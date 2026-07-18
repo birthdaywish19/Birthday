@@ -290,6 +290,43 @@ transform:translateY(-100px) rotate(360deg);
 }
 }
 
+.cake-cut{
+animation:cutCakeAnimation 1.2s forwards;
+}
+
+@keyframes cutCakeAnimation{
+0%{
+transform:scale(1) rotate(0deg);
+}
+50%{
+transform:scale(0.9) rotate(-5deg);
+}
+100%{
+transform:scale(0.8) rotate(5deg);
+opacity:0;
+}
+}
+
+.falling-rose{
+position:fixed;
+top:-50px;
+font-size:35px;
+pointer-events:none;
+z-index:9999;
+animation:roseFall 5s linear forwards;
+}
+
+@keyframes roseFall{
+0%{
+transform:translateY(-50px) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
 </style>
 </head>
 
@@ -322,8 +359,13 @@ Start ✨
 </section>
 <section id="cakePage" class="hidden">
 
-<img src="cake.png"
+<img id="birthdayCake"
+src="cake.png"
 style="width:280px;max-width:90%;margin-bottom:25px;">
+
+<div id="cutEffect" style="font-size:40px;opacity:0;">
+🍰 ✨ 🍰
+</div>
 
 <h2>A Birthday Cake For You 🎂</h2>
 
@@ -363,7 +405,7 @@ box-shadow:0 10px 30px rgba(0,0,0,.15);
 For the most dramatic person I know 😂❤️
 </p>
 
-<button class="btn" onclick="showPage('galleryPage')">
+<button class="btn" onclick="showerRoses()">
 Open It 🎁
 </button>
 
@@ -373,10 +415,10 @@ Open It 🎁
 
 <section id="galleryPage" class="hidden">
 
-<h2>📸 Our Memory Vault ❤️</h2>
+<h2>📸 Our Memory Vault❤️</h2>
 
 <p style="margin-bottom:25px;">
-A collection of our memories ✨
+A collection of our favorite memories ✨
 </p>
 
 <div class="gallery">
@@ -507,14 +549,23 @@ setTimeout(type,18);
 
 type();
 }
+
 function cutCake(){
 
-alert("🌟 Wish made? Then let's celebrate! 🎂❤️");
+const cake = document.getElementById("birthdayCake");
 
-showPage("giftPage");
+cake.classList.add("cake-cut");
 
+setTimeout(() => {
+
+    alert("🌟 Wish made? Then let's celebrate! 🎂❤️");
+
+    showPage("giftPage");
+
+},1200);
 
 }
+
 function floatingHearts(){
 
 const icons=["❤️","🌸","✨","💖","🎀"];
@@ -536,6 +587,36 @@ document.body.appendChild(heart);
 setTimeout(()=>{
 heart.remove();
 },8000);
+}
+
+function showerRoses(){
+
+for(let i=0;i<30;i++){
+
+setTimeout(()=>{
+
+const rose=document.createElement("div");
+
+rose.className="falling-rose";
+
+rose.innerHTML="🌹";
+
+rose.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>{
+rose.remove();
+},5000);
+
+},i*100);
+
+}
+
+setTimeout(()=>{
+showPage("galleryPage");
+},5000);
+
 }
 
 setInterval(floatingHearts,700);
