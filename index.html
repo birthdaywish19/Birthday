@@ -335,17 +335,6 @@ color:#ff4f92;
 text-align:center;
 }
 
-@keyframes fadeInWish{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
 </style>
 </head>
 
@@ -396,17 +385,6 @@ color:#ff4f92;
 ">
 ✨ Close your eyes and make a wish ✨
 </p>
-
-<p id="wishMessage" style="
-display:none;
-margin-top:20px;
-font-size:1.4rem;
-font-weight:600;
-color:#ff4f92;
-animation:fadeInWish 1s ease;
-">
-🌟 Wish made? Then let's go ahead! 🎂❤️
-</p>
     
 <button class="btn" onclick="cutCake()">
 Tap to cut The Cake 🎂
@@ -456,7 +434,7 @@ A collection of our favorite memories ✨
 <div class="card">
 <img src="photo1.jpg" class="photo">
 <p class="memory-text">
-HAPPY 🌸 🧸ྀི
+HAPPY  🧸ྀི
 </p>
 </div>
 
@@ -504,7 +482,7 @@ YOU 🥂🥂
 </div>
 
 <button class="btn" onclick="showPage('finalPage')">
-One last thingc➜ 
+One last thing➜ 
 </button>
 
 </section>
@@ -600,13 +578,13 @@ const cake = document.getElementById("birthdayCake");
 
 cake.classList.add("cake-cut");
 
-document.getElementById("wishMessage").style.display = "block";
-
 setTimeout(() => {
+
+alert("Wish made🌟? Then let's go! 🎂❤️");
 
 showPage("giftPage");
 
-},2500);
+},1200);
 
 }
 
